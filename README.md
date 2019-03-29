@@ -48,6 +48,74 @@ d = p.parse(progress)
 m = SCPA(d, progres, logging.ERROR)
 m.calculate()
 
+
+import sys
+
+from cclib.method import MPA
+from cclib.parser import ccopen
+
+d = ccopen(sys.argv[1]).parse()
+m = MPA(d)
+m.calculate()
+
+
+from cclib.method import MPA
+from cclib.parser import ccopen
+from cclib.progress import TextProgress
+import logging
+
+progress = TextProgress()
+d = ccopen("mycalc.out", logging.ERROR).parse(progress)
+
+m = MPA(d, progres, logging.ERROR)
+m.calculate()
+
+
+
+import sys
+
+from cclib.method import LPA
+from cclib.parser import ccopen
+
+d = ccopen(sys.argv[1]).parse()
+m = LPA(d)
+m.calculate()
+
+
+from cclib.parser import ccopen
+from cclib.method import Density
+
+parser = ccopen("myfile.out")
+data = parser.parse()
+
+d = Density(data)
+d.calculate()
+
+
+import sys
+
+from cclib.parser import ccopen
+from cclib.method import MBO
+
+parser = ccopen(sys.argv[1])
+data = parser.parse()
+
+d = MBO(data)
+d.calculate()
+
+from cclib.io import ccopen
+from cclib.method import CDA
+
+molecule = ccopen("molecule.log")
+frag1 = ccopen("fragment1.log")
+frag2 = ccopen("fragment2.log")
+
+m = molecule.parser()
+f1 = frag1.parse()
+f2 = frag2.parse()
+
+cda = CDA(m)
+cda.caluculate([f1, f2])
 ```
 
 ```sh
